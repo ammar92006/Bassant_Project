@@ -1,9 +1,14 @@
 // Import Firebase authentication functions
-import { app } from './firebase.js';
-import { getAuth, createUserWithEmailAndPassword, updateProfile } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
+import { app, db, ref, set, auth } from './firebase.js';
+import { createUserWithEmailAndPassword, updateProfile, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
 
-// Initialize Firebase Auth
-const auth = getAuth(app);
+// Check if user is already logged in
+onAuthStateChanged(auth, (user) => {
+    if (user) {
+        // User is signed in, redirect to profile
+        window.location.href = '/html/profile.html';
+    }
+});
 
 // Get form elements
 const form = document.querySelector('form');
@@ -175,24 +180,25 @@ form.addEventListener('submit', async (e) => {
             displayName: `${firstName} ${secondName}`
         });
 
-        // Store additional user data in localStorage (you might want to use Firestore for production)
+        // Store additional user data in Realtime Database
         const userData = {
             uid: user.uid,
             firstName: firstName,
-            secondName: secondName,
+            lastName: secondName,
             email: email,
             phone: phone,
-            dateOfBirth: dateOfBirth,
+            dob: dateOfBirth,
             createdAt: new Date().toISOString()
         };
 
-        localStorage.setItem(`user_${user.uid}`, JSON.stringify(userData));
+        // Save to Firebase Realtime Database
+        await set(ref(db, 'users/' + user.uid), userData);
 
         // Success message
         alert('Account created successfully! Welcome to Bloom & Blossom!');
         
-        // Redirect to home page or user dashboard
-        window.location.href = '/html/user.html';
+        // Redirect to profile page
+        window.location.href = '/html/profile.html';
 
     } catch (error) {
         console.error('Error creating account:', error);

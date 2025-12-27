@@ -1,9 +1,6 @@
 // Import Firebase authentication functions
-import { app } from './firebase.js';
-import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
-
-// Initialize Firebase Auth
-const auth = getAuth(app);
+import { auth } from './firebase.js';
+import { signInWithEmailAndPassword, onAuthStateChanged, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
 
 // Get form elements
 const loginForm = document.querySelector('form');
@@ -12,16 +9,11 @@ const passwordInput = document.querySelector('input[placeholder="Password"]');
 const rememberCheckbox = document.querySelector('input[type="checkbox"]');
 const loginBtn = document.querySelector('.btn');
 
-// Check if user is already logged in
+// Check if user is already logged in and redirect to profile
 onAuthStateChanged(auth, (user) => {
     if (user) {
-        // User is signed in, redirect to user dashboard or home
-        // You can customize this redirect based on your needs
-        console.log('User is already logged in:', user.email);
-        // Optionally show user info or redirect
-    } else {
-        // User is signed out
-        console.log('User is signed out');
+        // User is signed in, redirect to profile page
+        window.location.href = '/html/profile.html';
     }
 });
 
@@ -51,21 +43,18 @@ loginForm.addEventListener('submit', async (e) => {
 
         // Handle "Remember Me" functionality
         if (rememberMe) {
-            // Firebase automatically handles persistence
             localStorage.setItem('rememberMe', 'true');
+            localStorage.setItem('savedEmail', email);
         } else {
             localStorage.removeItem('rememberMe');
+            localStorage.removeItem('savedEmail');
         }
 
-        // Get user data from localStorage if available
-        const userData = localStorage.getItem(`user_${user.uid}`);
-        const displayName = user.displayName || (userData ? JSON.parse(userData).firstName : 'User');
-
         // Success message
-        alert(`Welcome back, ${displayName}!`);
+        alert(`Welcome back!`);
         
-        // Redirect to home page or user dashboard
-        window.location.href = '/html/home.html';
+        // Redirect to profile page
+        window.location.href = '/html/profile.html';
 
     } catch (error) {
         console.error('Login error:', error);
@@ -177,7 +166,6 @@ document.querySelector('.remember-forget a').addEventListener('click', (e) => {
 
 async function resetPassword(email) {
     try {
-        const auth = getAuth();
         await sendPasswordResetEmail(auth, email);
         alert('Password reset email sent! Please check your inbox.');
     } catch (error) {
