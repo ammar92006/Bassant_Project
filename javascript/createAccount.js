@@ -195,7 +195,7 @@ form.addEventListener('submit', async (e) => {
         await set(ref(db, 'users/' + user.uid), userData);
 
         // Success message
-        alert('Account created successfully! Welcome to Bloom & Blossom!');
+        alert('Account created successfully! Welcome to Bloomy!');
         
         // Redirect to profile page
         window.location.href = '/html/profile.html';

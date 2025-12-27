@@ -242,7 +242,7 @@ async function loadProductsFromFirebase() {
 
 // ===== INITIALIZE EVERYTHING =====
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('Bloom&Blossom initialized!');
+    console.log('Bloomy initialized!');
     
     // Setup all functionality
     setupCartButtons();
