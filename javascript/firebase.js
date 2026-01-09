@@ -9,14 +9,15 @@ import {getAuth} from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.j
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-    apiKey: "AIzaSyB37722VPoROeS7M533bmKvxpsYgyXFbmo",
-    authDomain: "pinky-flowers.firebaseapp.com",
-    projectId: "pinky-flowers",
-    storageBucket: "pinky-flowers.firebasestorage.app",
-    messagingSenderId: "1068975597110",
-    appId: "1:1068975597110:web:9eb01d924a18dbfb0f9a97",
-    measurementId: "G-N0R86ECGJP"
+  apiKey: "AIzaSyD6ZEDFn360LiNMYRYjsvodJZRNJDapUtg",
+  authDomain: "bloomy-e92a3.firebaseapp.com",
+  projectId: "bloomy-e92a3",
+  storageBucket: "bloomy-e92a3.firebasestorage.app",
+  messagingSenderId: "746284523804",
+  appId: "1:746284523804:web:f65fca67970670a5f21ad9",
+  measurementId: "G-3VS5K3QS15"
 };
+
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
