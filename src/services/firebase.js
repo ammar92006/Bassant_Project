@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-analytics.js";
-import { getDatabase, ref, onValue, set, push, get, update, remove, child } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-database.js";
+import { getDatabase, ref, onValue, set, push, get, update, remove, child, query, orderByChild, equalTo } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-database.js";
 import { getAuth, onAuthStateChanged, signOut, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
 import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-storage.js";
 
@@ -29,6 +29,6 @@ const storage = getStorage(app);
 
 export { 
     app, analytics, db, auth, storage, storageRef, uploadBytes, getDownloadURL, 
-    ref, onValue, set, push, get, update, remove, child,
+    ref, onValue, set, push, get, update, remove, child, query, orderByChild, equalTo,
     onAuthStateChanged, signOut, signInWithEmailAndPassword, createUserWithEmailAndPassword
 };

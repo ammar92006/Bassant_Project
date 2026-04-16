@@ -3,8 +3,8 @@
 // Full profile management with edit capability
 // ============================================
 
-import { db, ref, get, update, auth } from "/src/services/firebase.js";
-import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
+import { db, ref, get, update, auth, query, orderByChild, equalTo } from "/src/services/firebase.js";
+import { onAuthStateChanged, signOut, verifyBeforeUpdateEmail } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
 
 // ===== TOAST NOTIFICATION =====
 function showToast(message, type = 'success') {
@@ -85,7 +85,7 @@ class ProfileManager {
             }
         } catch (error) {
             console.error('Error loading user data:', error);
-            showToast('Error loading profile data', 'error');
+            showToast('Error loading profile data: ' + error.message, 'error');
         }
     }
 
@@ -105,9 +105,10 @@ class ProfileManager {
         document.getElementById('user-name').textContent = fullName;
         document.getElementById('user-email').textContent = email;
 
-        const memberDate = this.userData.createdAt
-            ? new Date(this.userData.createdAt).toLocaleDateString('en-US', {
-                year: 'numeric', month: 'long', day: 'numeric'
+        const createdAt = this.userData.createdAt || this.currentUser.metadata.creationTime;
+        const memberDate = createdAt
+            ? new Date(createdAt).toLocaleDateString('en-US', {
+                year: 'numeric', month: 'short', day: 'numeric'
             })
             : 'Recently';
         document.getElementById('member-date').textContent = memberDate;
@@ -132,6 +133,7 @@ class ProfileManager {
         // Pre-fill edit form
         document.getElementById('edit-firstName').value = firstName;
         document.getElementById('edit-lastName').value = lastName;
+        document.getElementById('edit-email').value = email;
         document.getElementById('edit-phone').value = this.userData.phone || '';
         document.getElementById('edit-dob').value = this.userData.dob || '';
         document.getElementById('edit-address').value = this.userData.address || '';
@@ -186,27 +188,28 @@ class ProfileManager {
         }
     }
 
-    // ===== LOAD ORDERS (LINKED BY USER ID) =====
     async loadOrders() {
         const ordersListDiv = document.getElementById('orders-list');
         if (!ordersListDiv) return;
 
         try {
             const ordersRef = ref(db, 'orders');
-            const snapshot = await get(ordersRef);
+            
+            // Query only orders belonging to THIS user
+            const q = query(ordersRef, orderByChild('userId'), equalTo(this.currentUser.uid));
+            const snapshot = await get(q);
 
             if (snapshot.exists()) {
-                const allOrders = snapshot.val();
-                // Filter orders belonging to THIS user by userId
-                this.orders = Object.entries(allOrders)
+                const userOrders = snapshot.val();
+                this.orders = Object.entries(userOrders)
                     .map(([id, order]) => ({ id, ...order }))
-                    .filter(order => order.userId === this.currentUser.uid)
                     .sort((a, b) => new Date(b.orderDate) - new Date(a.orderDate));
             } else {
                 this.orders = [];
             }
 
             this.displayOrders();
+
         } catch (error) {
             console.error('Error loading orders:', error);
             ordersListDiv.innerHTML = `<p style="color:#f44336; font-size:1.4rem;">Error loading orders. Please refresh.</p>`;
@@ -378,6 +381,8 @@ class ProfileManager {
             updatedAt: new Date().toISOString()
         };
 
+        const newEmail = document.getElementById('edit-email').value.trim();
+
         // Validate
         if (!updatedData.firstName) {
             showToast('First name is required', 'error');
@@ -386,7 +391,23 @@ class ProfileManager {
             return;
         }
 
+        if (newEmail && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(newEmail)) {
+            showToast('Please enter a valid email address', 'error');
+            btn.disabled = false;
+            btn.innerHTML = '<i class="fas fa-save"></i> Save Changes';
+            return;
+        }
+
         try {
+            // Update email in Firebase Auth if changed
+            let emailVerificationSent = false;
+            if (newEmail && newEmail !== this.currentUser.email) {
+                await verifyBeforeUpdateEmail(this.currentUser, newEmail);
+                emailVerificationSent = true;
+                // Delete email from updatedData so we don't update RTDB before they verify
+                delete updatedData.email;
+            }
+
             const userRef = ref(db, `users/${this.currentUser.uid}`);
             await update(userRef, updatedData);
 
@@ -396,10 +417,18 @@ class ProfileManager {
             this.updateNavAvatar();
             this.toggleEditMode(false);
 
-            showToast('Profile updated successfully! ✓', 'success');
+            if (emailVerificationSent) {
+                showToast('Profile saved! A verification link was sent to your new email to confirm the change.', 'info');
+            } else {
+                showToast('Profile updated successfully! ✓', 'success');
+            }
         } catch (error) {
             console.error('Error updating profile:', error);
-            showToast('Failed to update profile: ' + error.message, 'error');
+            if (error.code === 'auth/requires-recent-login') {
+                showToast('Security requirement: Please log out and back in to change your email.', 'error');
+            } else {
+                showToast('Failed to update profile: ' + error.message, 'error');
+            }
         } finally {
             btn.disabled = false;
             btn.innerHTML = '<i class="fas fa-save"></i> Save Changes';

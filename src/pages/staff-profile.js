@@ -68,7 +68,7 @@ async function loadUserData(uid) {
         }
     } catch (error) {
         console.error("Error loading user data:", error);
-        showToast("Error loading profile data", "error");
+        showToast("Error loading profile data: " + error.message, "error");
     }
 }
 

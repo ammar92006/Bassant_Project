@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>Bloomy | My Profile</title>
+		<link rel="icon" type="image/png" href="/public/favicon.png">`n		<title>Bloomy | My Profile</title>
 		<meta name="description" content="Manage your Bloomy account, view orders, and update your personal information" />
 		<link rel="stylesheet" href="/src/styles/profile.css" />
 		<link rel="stylesheet" href="/src/styles/Home.css" />
@@ -16,7 +16,7 @@
 
 		<!--start section header-->
 		<header id="main-header">
-			<a href="/index.html" class="logo">Bloomy<span>.</span></a>
+			<a href="/index.html" class="logo"><img src="/public/favicon.png" alt="Icon" style="height: 24px; vertical-align: middle; margin-right: 8px; margin-top: -4px;">Bloomy<span>.</span></a>
 			<nav class="navbar" id="navbar">
 				<a href="/index.html">Home</a>
 				<a href="/index.html#about">About</a>
@@ -58,7 +58,7 @@
 							<a href="/src/pages/profile.html?tab=orders" class="user-dropdown-item">
 								<i class="fas fa-shopping-bag"></i><span>My Orders</span>
 							</a>
-							<a href="/src/pages/profile.html?tab=settings" class="user-dropdown-item">
+							<a href="/src/pages/profile.html?tab=account" class="user-dropdown-item">
 								<i class="fas fa-cog"></i><span>Settings</span>
 							</a>
 							<div class="user-dropdown-divider"></div>
@@ -169,6 +169,10 @@
 									<div class="edit-field">
 										<label class="edit-label">Last Name</label>
 										<input type="text" class="edit-input" id="edit-lastName" placeholder="Last name" />
+									</div>
+									<div class="edit-field">
+										<label class="edit-label">Email Address</label>
+										<input type="email" class="edit-input" id="edit-email" placeholder="example@email.com" />
 									</div>
 									<div class="edit-field">
 										<label class="edit-label">Phone Number</label>
