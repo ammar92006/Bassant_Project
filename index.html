@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Bloomy | Home</title>
+		<meta name="description" content="Bloomy - Buy luxury flowers online in Egypt. Free same day delivery, reasonable prices!" />
+		<link rel="stylesheet" href="/src/styles/Home.css" />
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+		/>
+		<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+	</head>
+
+	<body>
+		<!-- Toast Container -->
+		<div class="toast-container" id="toast-container"></div>
+
+		<!-- Mobile Nav Overlay -->
+		<div class="nav-overlay" id="nav-overlay"></div>
+
+		<!--start section header-->
+		<header id="main-header">
+			<a href="/index.html" class="logo">Bloomy<span>.</span></a>
+
+			<nav class="navbar" id="navbar">
+				<a href="#home" class="active">Home</a>
+				<a href="#about">About</a>
+				<a href="#products">Products</a>
+				<a href="#contact">Contact</a>
+			</nav>
+
+			<div class="icons">
+				<!-- Search -->
+				<div class="header-search" id="header-search">
+					<input type="text" placeholder="Search products..." id="search-input" />
+					<a href="#" class="header-icon-btn" id="search-toggle-btn" title="Search">
+						<i class="fas fa-search"></i>
+					</a>
+				</div>
+
+				<!-- Favorites -->
+				<a href="/src/pages/favorites.html" class="header-icon-btn" id="favorites-btn" title="Favorites">
+					<i class="fas fa-heart"></i>
+					<span class="badge" id="favorites-badge">0</span>
+				</a>
+
+				<!-- Cart -->
+				<a href="/src/pages/cart.html" class="header-icon-btn" id="cart-header-btn" title="Shopping Cart">
+					<i class="fas fa-shopping-bag"></i>
+					<span class="badge" id="cart-badge">0</span>
+				</a>
+
+				<!-- User Avatar / Dropdown -->
+				<div class="user-nav-wrapper" id="user-nav-wrapper">
+					<!-- Not logged in: show user icon -->
+					<a href="/src/pages/user.html" class="header-icon-btn" id="user-btn" title="My Account">
+						<i class="fas fa-user"></i>
+					</a>
+
+					<!-- Logged in: show avatar with dropdown -->
+					<div class="user-avatar-btn" id="user-avatar-btn" style="display:none;" title="My Account">
+						<div class="header-avatar" id="header-avatar">U</div>
+						<span class="user-nav-name" id="user-nav-name"></span>
+						<i class="fas fa-chevron-down user-chevron"></i>
+
+						<!-- Dropdown Menu -->
+						<div class="user-dropdown" id="user-dropdown">
+							<div class="user-dropdown-header">
+								<div class="user-dp-avatar" id="user-dp-avatar">U</div>
+								<div>
+									<h4 id="user-dp-name">Customer</h4>
+									<p id="user-dp-email">email@example.com</p>
+								</div>
+							</div>
+							<div class="user-dropdown-divider"></div>
+							<a href="/src/pages/profile.html" class="user-dropdown-item" id="dp-notifications">
+								<i class="fas fa-bell"></i>
+								<span>My Notifications</span>
+								<span class="dp-badge" id="notif-count" style="display:none;">0</span>
+							</a>
+							<a href="/src/pages/profile.html?tab=orders" class="user-dropdown-item" id="dp-orders">
+								<i class="fas fa-shopping-bag"></i>
+								<span>My Orders</span>
+							</a>
+							<a href="/src/pages/profile.html?tab=settings" class="user-dropdown-item" id="dp-settings">
+								<i class="fas fa-cog"></i>
+								<span>Settings</span>
+							</a>
+							<div class="user-dropdown-divider"></div>
+							<div class="user-dropdown-item danger" id="dp-logout">
+								<i class="fas fa-sign-out-alt"></i>
+								<span>Sign Out</span>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Theme Toggle -->
+				<a href="#" id="theme-toggle" class="header-icon-btn theme-toggle" title="Toggle Theme">
+					<span>🌙</span>
+				</a>
+
+				<!-- Mobile Menu Button -->
+				<div class="menu-btn" id="menu-btn">
+					<i class="fas fa-bars"></i>
+				</div>
+			</div>
+		</header>
+
+		<!--end section header-->
+
+		<!--start section home-->
+		<section class="home" id="home">
+			<div class="content">
+				<span>Luxury rose</span>
+				<p>
+					Buy flowers online in Egypt Free same day delivery,
+					reasonable prices!
+				</p>
+				<a href="#products" class="btn">Buy now</a>
+			</div>
+		</section>
+		<!--end section home-->
+
+		<!--start section about-->
+		<section class="about" id="about">
+			
+			<h1 class="heading"><span>about </span>us</h1>
+			<div class="row">
+				<div class="image">
+					<img src="/image/TR.PNG" />
+					
+					<h3>best flower sellers</h3>
+				</div>
+				<div class="content">
+					<h4>why choose us?</h4>
+					<p>
+						We easily send flowers everywhere in Egypt.<br />
+						With Bloomy, you can be sure that your bouquet
+						is hand-designed, <br />
+						hand-delivered, fresh and will make a difference by
+						supporting local flower shops when they need it most.
+					</p>
+					<a href="/src/pages/learn-more.html" class="btn">learn more</a>
+				</div>
+			</div>
+		</section>
+		<!--end section about-->
+
+		<!--start section products-->
+		<section class="products" id="products">
+			<h1 class="heading"><span>products</span></h1>
+			<div class="box-container">
+				<!-- Products will be loaded dynamically from Firebase -->
+				<div style="text-align:center; width:100%; padding:5rem 0;">
+					<i class="fas fa-spinner fa-spin" style="font-size:3rem; color:var(--primary-color);"></i>
+					<p style="font-size:1.6rem; color:var(--text-gray); margin-top:1.5rem;">Loading products...</p>
+				</div>
+			</div>
+		</section>
+		<!--end section products-->
+
+		<!--start section footer-->
+		<section class="footer" id="contact">
+			<div class="box-container">
+				<div class="box">
+					<h3>Quick Links</h3>
+					<a href="/index.html#home" title="home">Home</a>
+					<a href="/index.html#about" title="about">About</a>
+					<a href="/index.html#products" title="products">Products</a>
+				</div>
+				<div class="box">
+					<h3>Location</h3>
+					<p>Cairo</p>
+					<p>Qalyubia</p>
+					<p>Alexandria</p>
+				</div>
+				<div class="box">
+					<h3>Extra Links</h3>
+					<a href="/src/pages/user.html" title="My account">My Account</a>
+					<a href="/src/pages/cart.html" title="My Order">My Order</a>
+					<a href="/src/pages/favorites.html" title="Wishlist">My Wishlist</a>
+				</div>
+				<div class="box">
+					<h3>Contact Info</h3>
+					<a
+						href="https://www.instagram.com/bloom_blossom222"
+						target="_blank"
+						title="instagram"
+					>
+						<img src="/image/footer-contact-info-instagram.png" alt="Insta" />
+						Instagram
+					</a>
+					<a href="https://www.facebook.com/Ammar.92006" target="_blank" title="Facebook">
+						<img src="/image/footer-contact-info-facebook.png" alt="FB" />
+						Facebook
+					</a>
+					<a href="#" target="_blank" title="snapchat">
+						<img src="/image/footer-contact-info-snapchat.png" alt="Snap" />
+						Snapchat
+					</a>
+					<a href="#" target="_blank" title="twitter">
+						<img src="/image/footer-contact-info-twitter.png" alt="X" />
+						Twitter
+					</a>
+					<div style="margin-top: 1rem;">
+						<img src="/image/footer-contact-info-card1.svg" alt="Card" />
+						<img src="/image/footer-contact-info-card2.svg" alt="Card" />
+						<img src="/image/footer-contact-info-card3.svg" alt="Card" />
+					</div>
+				</div>
+			</div>
+			<div class="credit">
+				© Developed by <span>Ammar Ahmed</span> | All rights reserved
+			</div>
+			<div class="privacy">
+				<a href="/src/pages/privacypolicy.html">Privacy Policy</a>
+				<a href="/src/pages/Terms.html">Terms and Conditions</a>
+				<span style="font-size:1.2rem; color:var(--text-gray); margin-left:1rem;">
+					<a href="/src/pages/admin-login.html" style="color:var(--text-gray); font-size:1.1rem;">Admin Portal</a>
+				</span>
+			</div>
+		</section>
+		<!--end section footer-->
+
+		<!-- SCRIPTS -->
+		<script src="/src/pages/index.js" type="module"></script>
+        <script src="/src/utils/theme.js"></script>
+		<!-- END OF SCRIPTS -->
+	</body>
+</html>

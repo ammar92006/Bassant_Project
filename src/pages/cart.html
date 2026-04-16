@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Checkout | Bloomy</title>
+		<link rel="stylesheet" href="/src/styles/cart.css" />
+		<link rel="stylesheet" href="/src/styles/Home.css" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+		<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+	</head>
+	<body>
+		<!-- Toast Container -->
+		<div class="toast-container" id="toast-container"></div>
+
+		<!-- Mobile Nav Overlay -->
+		<div class="nav-overlay" id="nav-overlay"></div>
+
+		<!--start section header-->
+		<header id="main-header">
+			<a href="/index.html" class="logo">Bloomy<span>.</span></a>
+			<nav class="navbar" id="navbar">
+				<a href="/index.html">Home</a>
+				<a href="/index.html#about">About</a>
+				<a href="/index.html#products">Products</a>
+				<a href="#contact">Contact</a>
+			</nav>
+			<div class="icons">
+				<a href="/src/pages/favorites.html" class="header-icon-btn" title="Favorites">
+					<i class="fas fa-heart"></i>
+					<span class="badge" id="favorites-badge">0</span>
+				</a>
+				<a href="/src/pages/cart.html" class="header-icon-btn" title="Shopping Cart" style="background:rgba(232,67,147,0.15); border-color:rgba(232,67,147,0.3); color:var(--primary-color);">
+					<i class="fas fa-shopping-bag"></i>
+					<span class="badge" id="cart-badge">0</span>
+				</a>
+
+				<!-- User Avatar / Dropdown -->
+				<div class="user-nav-wrapper" id="user-nav-wrapper">
+					<a href="/src/pages/user.html" class="header-icon-btn" id="user-btn" title="My Account">
+						<i class="fas fa-user"></i>
+					</a>
+					<div class="user-avatar-btn" id="user-avatar-btn" style="display:none;" title="My Account">
+						<div class="header-avatar" id="header-avatar">U</div>
+						<span class="user-nav-name" id="user-nav-name"></span>
+						<i class="fas fa-chevron-down user-chevron"></i>
+						<div class="user-dropdown" id="user-dropdown">
+							<div class="user-dropdown-header">
+								<div class="user-dp-avatar" id="user-dp-avatar">U</div>
+								<div>
+									<h4 id="user-dp-name">Customer</h4>
+									<p id="user-dp-email">email@example.com</p>
+								</div>
+							</div>
+							<div class="user-dropdown-divider"></div>
+							<a href="/src/pages/profile.html" class="user-dropdown-item"><i class="fas fa-bell"></i><span>My Notifications</span></a>
+							<a href="/src/pages/profile.html?tab=orders" class="user-dropdown-item"><i class="fas fa-shopping-bag"></i><span>My Orders</span></a>
+							<a href="/src/pages/profile.html?tab=settings" class="user-dropdown-item"><i class="fas fa-cog"></i><span>Settings</span></a>
+							<div class="user-dropdown-divider"></div>
+							<div class="user-dropdown-item danger" id="dp-logout"><i class="fas fa-sign-out-alt"></i><span>Sign Out</span></div>
+						</div>
+					</div>
+				</div>
+
+				<a href="#" id="theme-toggle" class="header-icon-btn theme-toggle" title="Toggle Theme">
+					<span>🌙</span>
+				</a>
+				<div class="menu-btn" id="menu-btn">
+					<i class="fas fa-bars"></i>
+				</div>
+			</div>
+		</header>
+		<!--end section header-->
+
+		<!--start section order-->
+		<h1 class="heading">Checkout</h1>
+
+		<section class="cart-wrapper">
+			<!-- Left Column: Form -->
+			<div class="billing-form-container">
+				<h2 class="section-title">Billing Details</h2>
+				<form class="billing-form" action="#">
+					<label for="address">Select Saved Address</label>
+					<select id="address">
+						<option value="new">Add New Address</option>
+						<option value="home">Home (Cairo)</option>
+					</select>
+
+					<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+						<div>
+							<label for="first-name">First Name</label>
+							<input type="text" id="first-name" required placeholder="John" />
+						</div>
+						<div>
+							<label for="last-name">Last Name</label>
+							<input type="text" id="last-name" required placeholder="Doe" />
+						</div>
+					</div>
+
+					<label for="street">Street Address</label>
+					<input type="text" id="street" required placeholder="123 Flower St." />
+
+					<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+						<div>
+							<label for="city">City</label>
+							<input type="text" id="city" required placeholder="Cairo" />
+						</div>
+						<div>
+							<label for="postcode">Postal Code</label>
+							<input type="text" id="postcode" required placeholder="11511" />
+						</div>
+					</div>
+
+					<label for="phone">Phone Number</label>
+					<input type="tel" id="phone" required placeholder="+20 123 456 7890" />
+
+					<label for="additional-info">Order Notes (Optional)</label>
+					<textarea id="additional-info" placeholder="Notes about your order, e.g. special notes for delivery."></textarea>
+
+					<label class="checkbox-group">
+						<input type="checkbox" id="different-address" />
+						Ship to a different address?
+					</label>
+
+					<button class="btn" type="submit">
+						Proceed to Shipping
+					</button>
+				</form>
+			</div>
+
+			<!-- Right Column: Summary -->
+			<div class="order-summary-container">
+				<h2 class="section-title">Order Summary</h2>
+				<div style="text-align: center; padding: 3rem 0; color: #999;">
+					<i class="fas fa-spinner fa-spin" style="font-size:2rem;"></i>
+					<p style="font-size: 1.4rem; margin-top: 1rem;">Loading cart...</p>
+				</div>
+			</div>
+		</section>
+		<!--end section order-->
+
+		<!--start section footer-->
+		<section class="footer" id="contact">
+			<div class="box-container">
+				<div class="box">
+					<h3>Quick Links</h3>
+					<a href="/index.html#home" title="home">Home</a>
+					<a href="/index.html#about" title="about">About</a>
+					<a href="/index.html#products" title="products">Products</a>
+				</div>
+				<div class="box">
+					<h3>Location</h3>
+					<p>Cairo</p>
+					<p>Qalyubia</p>
+					<p>Alexandria</p>
+				</div>
+				<div class="box">
+					<h3>Extra Links</h3>
+					<a href="/src/pages/user.html" title="My account">My Account</a>
+					<a href="/src/pages/cart.html" title="My Order">My Order</a>
+					<a href="/src/pages/favorites.html" title="Wishlist">My Wishlist</a>
+				</div>
+				<div class="box">
+					<h3>Contact Info</h3>
+					<a href="https://www.instagram.com/bloom_blossom222" target="_blank" title="instagram">
+						<img src="/image/footer-contact-info-instagram.png" alt="Insta" />
+						Instagram
+					</a>
+					<a href="#" target="_blank" title="Facebook">
+						<img src="/image/footer-contact-info-facebook.png" alt="FB" />
+						Facebook
+					</a>
+					<a href="#" target="_blank" title="snapchat">
+						<img src="/image/footer-contact-info-snapchat.png" alt="Snap" />
+						Snapchat
+					</a>
+					<a href="#" target="_blank" title="twitter">
+						<img src="/image/footer-contact-info-twitter.png" alt="X" />
+						Twitter
+					</a>
+					<div style="margin-top: 1rem;">
+						<img src="/image/footer-contact-info-card1.svg" alt="Card" />
+						<img src="/image/footer-contact-info-card2.svg" alt="Card" />
+						<img src="/image/footer-contact-info-card3.svg" alt="Card" />
+					</div>
+				</div>
+			</div>
+			<div class="credit">
+				© Developed by <span>Ammar Ahmed</span> | All rights reserved
+			</div>
+			<div class="privacy">
+				<a href="/src/pages/privacypolicy.html">Privacy Policy</a>
+				<a href="/src/pages/Terms.html">Terms and Conditions</a>
+			</div>
+		</section>
+		<!--end section footer-->
+
+		<!-- SCRIPTS -->
+		<script src="/src/pages/cart.js" type="module"></script>
+		<script src="/src/utils/theme.js"></script>
+		<script src="/src/components/user-dropdown.js" type="module"></script>
+		<!-- END OF SCRIPTS -->
+	</body>
+</html>

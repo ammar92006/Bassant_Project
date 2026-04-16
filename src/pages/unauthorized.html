@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Bloomy | Unauthorized</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+    <style>
+        * {
+            margin: 0; padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Trebuchet MS', sans-serif;
+        }
+        html { font-size: 62.5%; }
+        body {
+            background: #1a1a1a;
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .unauthorized-container {
+            text-align: center;
+            padding: 5rem;
+            background: #2c2c2c;
+            border-radius: 2rem;
+            box-shadow: 0 0.5rem 2rem rgba(0,0,0,0.4);
+            max-width: 50rem;
+            width: 90%;
+            animation: fadeIn 0.5s ease;
+        }
+        .unauthorized-container .icon {
+            font-size: 8rem;
+            color: #e84393;
+            margin-bottom: 2rem;
+        }
+        .unauthorized-container h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: #fff;
+        }
+        .unauthorized-container p {
+            font-size: 1.6rem;
+            color: #999;
+            margin-bottom: 3rem;
+            line-height: 1.6;
+        }
+        .unauthorized-container .btn {
+            display: inline-block;
+            padding: 1.2rem 3.5rem;
+            background: linear-gradient(90deg, #e84393, #d63384);
+            color: #fff;
+            border: none;
+            border-radius: 0.5rem;
+            font-size: 1.6rem;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .unauthorized-container .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0.5rem 1.5rem rgba(232, 67, 147, 0.4);
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="unauthorized-container">
+        <div class="icon">
+            <i class="fas fa-shield-halved"></i>
+        </div>
+        <h1>Access Denied</h1>
+        <p>You don't have permission to access the admin dashboard. Only administrators can view this page.</p>
+        <a href="/index.html" class="btn">
+            <i class="fas fa-home"></i> Go to Home
+        </a>
+    </div>
+</body>
+</html>

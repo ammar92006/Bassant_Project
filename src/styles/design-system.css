@@ -1,0 +1,309 @@
+/* ==========================================================================
+   BLOOMY DESIGN SYSTEM
+   A unified UI component library for Staff and Admin interfaces.
+   Colors match the existing dark-theme aesthetics.
+   ========================================================================== */
+
+:root {
+    /* Colors */
+    --primary-color: #e84393;
+    --secondary-color: #d63384;
+    --dark-bg: #1a1a1a;
+    --card-bg: #2c2c2c;
+    --input-bg: rgba(255, 255, 255, 0.05);
+    
+    --text-light: #ffffff;
+    --text-gray: #999999;
+    --border-color: #444444;
+    
+    /* Status Colors */
+    --success-color: #4caf50;
+    --warning-color: #ffc107;
+    --danger-color: #f44336;
+    --info-color: #2196f3;
+    
+    /* Typography */
+    --font-main: 'Poppins', 'Trebuchet MS', sans-serif;
+    
+    /* Shadows & Radii */
+    --shadow-sm: 0 2px 5px rgba(0,0,0,0.2);
+    --shadow-md: 0 5px 15px rgba(0,0,0,0.3);
+    --shadow-lg: 0 10px 30px rgba(0,0,0,0.5);
+    --radius-sm: 0.5rem;
+    --radius-md: 1rem;
+    --radius-lg: 1.5rem;
+    --radius-pill: 5rem;
+}
+
+.light-mode {
+    --primary-color: #e84393;
+    --secondary-color: #d63384;
+    --dark-bg: #f5f5f5;
+    --card-bg: #ffffff;
+    --input-bg: rgba(0, 0, 0, 0.05);
+    
+    --text-light: #222222;
+    --text-gray: #666666;
+    --border-color: #dddddd;
+    
+    /* Shadows for light mode need to be softer */
+    --shadow-sm: 0 2px 5px rgba(0,0,0,0.1);
+    --shadow-md: 0 5px 15px rgba(0,0,0,0.15);
+    --shadow-lg: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+/* Base Reset */
+* {
+    margin: 0; padding: 0;
+    box-sizing: border-box;
+    font-family: var(--font-main);
+    outline: none; border: none;
+    text-decoration: none;
+}
+
+html { font-size: 62.5%; }
+body { background: var(--dark-bg); color: var(--text-light); }
+
+/* ================== COMPONENTS ================== */
+
+/* 1. BUTTONS */
+.ds-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    padding: 1rem 2.5rem;
+    border-radius: var(--radius-sm);
+    font-size: 1.4rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.ds-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none !important;
+}
+
+.ds-btn-primary {
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    color: #fff;
+    box-shadow: var(--shadow-sm);
+}
+
+.ds-btn-primary:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 0.5rem 1.5rem rgba(232, 67, 147, 0.4);
+}
+
+.ds-btn-secondary {
+    background: var(--input-bg);
+    color: var(--text-light);
+    border: 1px solid var(--border-color);
+}
+
+.ds-btn-secondary:hover:not(:disabled) {
+    background: rgba(255,255,255,0.1);
+    border-color: var(--text-gray);
+}
+
+.ds-btn-danger {
+    background: rgba(244, 67, 54, 0.8);
+    color: white;
+}
+
+.ds-btn-danger:hover:not(:disabled) {
+    background: var(--danger-color);
+    transform: translateY(-2px);
+}
+
+/* 2. INPUTS & FORMS */
+.ds-form-group {
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.ds-label {
+    display: block;
+    font-size: 1.3rem;
+    color: var(--text-gray);
+    margin-bottom: 0.8rem;
+}
+
+.ds-input, .ds-select, .ds-textarea {
+    width: 100%;
+    padding: 1.2rem 1.5rem;
+    background: var(--input-bg);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    color: var(--text-light);
+    font-size: 1.4rem;
+    transition: all 0.3s ease;
+}
+
+.ds-input:focus, .ds-select:focus, .ds-textarea:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(232, 67, 147, 0.1);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.ds-input::placeholder, .ds-textarea::placeholder {
+    color: var(--border-color);
+}
+
+.ds-select option {
+    background: var(--card-bg);
+    color: var(--text-light);
+}
+
+.ds-input-error {
+    border-color: var(--danger-color) !important;
+}
+
+.ds-error-text {
+    color: var(--danger-color);
+    font-size: 1.2rem;
+    margin-top: 0.5rem;
+    display: block;
+}
+
+/* 3. CARDS */
+.ds-card {
+    background: var(--card-bg);
+    border-radius: var(--radius-md);
+    padding: 2.5rem;
+    box-shadow: var(--shadow-md);
+}
+
+.ds-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 1.5rem;
+}
+
+.ds-card-title {
+    font-size: 1.8rem;
+    color: var(--text-light);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.ds-card-title i {
+    color: var(--primary-color);
+}
+
+/* 4. TABLES (Similar to admin.css but reusable) */
+.ds-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.ds-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.ds-table th {
+    padding: 1.5rem 2rem;
+    text-align: left;
+    font-size: 1.2rem;
+    color: var(--text-gray);
+    text-transform: uppercase;
+    background: rgba(255, 255, 255, 0.02);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.ds-table td {
+    padding: 1.5rem 2rem;
+    font-size: 1.4rem;
+    color: var(--text-light);
+    border-bottom: 1px solid rgba(255,255,255,0.03);
+    vertical-align: middle;
+}
+
+.ds-table tr:hover {
+    background: rgba(255,255,255,0.03);
+}
+
+/* 5. MODALS */
+.ds-modal-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(5px);
+    z-index: 2000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.2s ease;
+}
+
+.ds-modal-overlay.active { display: flex; }
+
+.ds-modal {
+    background: var(--card-bg);
+    border-radius: var(--radius-lg);
+    width: 90%;
+    max-width: 50rem;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: var(--shadow-lg);
+    animation: slideUp 0.3s ease;
+}
+
+.ds-modal-header {
+    padding: 2rem 2.5rem;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ds-modal-title { font-size: 2rem; color: var(--text-light); }
+
+.ds-modal-close {
+    background: none; color: var(--text-gray); font-size: 2rem; cursor: pointer; padding: 0.5rem;
+}
+.ds-modal-close:hover { color: var(--danger-color); }
+
+.ds-modal-body { padding: 2.5rem; }
+
+.ds-modal-footer {
+    padding: 2rem 2.5rem;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+}
+
+/* 6. TOASTS */
+.ds-toast-container {
+    position: fixed; top: 2rem; right: 2rem; z-index: 3000;
+    display: flex; flex-direction: column; gap: 1rem;
+}
+
+.ds-toast {
+    padding: 1.5rem 2rem;
+    border-radius: var(--radius-sm);
+    background: var(--card-bg);
+    color: white;
+    display: flex; align-items: center; gap: 1rem;
+    font-size: 1.4rem;
+    box-shadow: var(--shadow-md);
+    border-left: 4px solid var(--primary-color);
+    animation: slideInRight 0.3s ease;
+}
+
+.ds-toast.success { border-left-color: var(--success-color); }
+.ds-toast.error { border-left-color: var(--danger-color); }
+
+/* ANIMATIONS */
+@keyframes fadeIn { from{opacity:0;} to{opacity:1;} }
+@keyframes slideUp { from{opacity:0; transform:translateY(20px);} to{opacity:1; transform:translateY(0);} }
+@keyframes slideInRight { from{opacity:0; transform:translateX(50px);} to{opacity:1; transform:translateX(0);} }
+@keyframes fadeOutRight { from{opacity:1; transform:translateX(0);} to{opacity:0; transform:translateX(50px);} }

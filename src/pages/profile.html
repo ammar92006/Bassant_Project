@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Bloomy | My Profile</title>
+		<meta name="description" content="Manage your Bloomy account, view orders, and update your personal information" />
+		<link rel="stylesheet" href="/src/styles/profile.css" />
+		<link rel="stylesheet" href="/src/styles/Home.css" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+		<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+	</head>
+	<body>
+		<!-- Toast Container -->
+		<div class="toast-container" id="toast-container"></div>
+
+		<!--start section header-->
+		<header id="main-header">
+			<a href="/index.html" class="logo">Bloomy<span>.</span></a>
+			<nav class="navbar" id="navbar">
+				<a href="/index.html">Home</a>
+				<a href="/index.html#about">About</a>
+				<a href="/index.html#products">Products</a>
+				<a href="#contact">Contact</a>
+			</nav>
+			<div class="icons">
+				<!-- Favorites -->
+				<a href="/src/pages/favorites.html" class="header-icon-btn" title="Favorites">
+					<i class="fas fa-heart"></i>
+				</a>
+				<!-- Cart -->
+				<a href="/src/pages/cart.html" class="header-icon-btn" title="Cart">
+					<i class="fas fa-shopping-bag"></i>
+				</a>
+
+				<!-- User Avatar / Dropdown -->
+				<div class="user-nav-wrapper" id="user-nav-wrapper">
+					<a href="/src/pages/user.html" class="header-icon-btn" id="user-btn" title="My Account">
+						<i class="fas fa-user"></i>
+					</a>
+					<div class="user-avatar-btn" id="user-avatar-btn" style="display:none;" title="My Account">
+						<div class="header-avatar" id="header-avatar">U</div>
+						<span class="user-nav-name" id="user-nav-name"></span>
+						<i class="fas fa-chevron-down user-chevron"></i>
+						<div class="user-dropdown" id="user-dropdown">
+							<div class="user-dropdown-header">
+								<div class="user-dp-avatar" id="user-dp-avatar">U</div>
+								<div>
+									<h4 id="user-dp-name">Customer</h4>
+									<p id="user-dp-email">email@example.com</p>
+								</div>
+							</div>
+							<div class="user-dropdown-divider"></div>
+							<a href="/src/pages/profile.html" class="user-dropdown-item">
+								<i class="fas fa-bell"></i><span>My Notifications</span>
+								<span class="dp-badge" id="notif-count" style="display:none;">0</span>
+							</a>
+							<a href="/src/pages/profile.html?tab=orders" class="user-dropdown-item">
+								<i class="fas fa-shopping-bag"></i><span>My Orders</span>
+							</a>
+							<a href="/src/pages/profile.html?tab=settings" class="user-dropdown-item">
+								<i class="fas fa-cog"></i><span>Settings</span>
+							</a>
+							<div class="user-dropdown-divider"></div>
+							<div class="user-dropdown-item danger" id="dp-logout">
+								<i class="fas fa-sign-out-alt"></i><span>Sign Out</span>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Theme Toggle -->
+				<a href="#" id="theme-toggle" class="header-icon-btn theme-toggle" title="Toggle Theme">
+					<span>🌙</span>
+				</a>
+				<!-- Mobile Menu -->
+				<div class="menu-btn" id="menu-btn">
+					<i class="fas fa-bars"></i>
+				</div>
+			</div>
+		</header>
+		<!--end section header-->
+
+		<!--start section profile-->
+		<section class="profile-section">
+			<div class="container">
+				<h1 class="heading">My <span>Profile</span></h1>
+
+				<!-- Profile Header -->
+				<div class="profile-header">
+					<div class="profile-avatar" id="profile-avatar-wrapper">
+						<span id="profile-initial">U</span>
+					</div>
+					<div class="profile-info">
+						<h2 id="user-name">Loading...</h2>
+						<p id="user-email">email@example.com</p>
+						<p class="member-since">Member since: <span id="member-date">2025</span></p>
+					</div>
+					<button class="logout-btn" id="logout-btn">
+						<i class="fas fa-sign-out-alt"></i> Logout
+					</button>
+				</div>
+
+				<!-- Tabs Navigation -->
+				<div class="tabs">
+					<button class="tab-btn active" data-tab="account">
+						<i class="fas fa-user"></i> Account Details
+					</button>
+					<button class="tab-btn" data-tab="orders">
+						<i class="fas fa-shopping-bag"></i> My Orders
+					</button>
+					<button class="tab-btn" data-tab="settings">
+						<i class="fas fa-cog"></i> Settings
+					</button>
+				</div>
+
+				<!-- Tab Content: Account Details -->
+				<div class="tab-content active" id="account-tab">
+					<div class="info-card">
+						<div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:2rem; flex-wrap:wrap; gap:1rem;">
+							<h3><i class="fas fa-info-circle"></i> Personal Information</h3>
+							<button class="edit-btn" id="edit-toggle-btn">
+								<i class="fas fa-edit"></i> Edit Profile
+							</button>
+						</div>
+
+						<!-- View Mode -->
+						<div id="view-mode">
+							<div class="info-grid">
+								<div class="info-item">
+									<label>First Name:</label>
+									<span id="first-name">-</span>
+								</div>
+								<div class="info-item">
+									<label>Last Name:</label>
+									<span id="last-name">-</span>
+								</div>
+								<div class="info-item">
+									<label>Email:</label>
+									<span id="profile-email">-</span>
+								</div>
+								<div class="info-item">
+									<label>Phone:</label>
+									<span id="phone">-</span>
+								</div>
+								<div class="info-item">
+									<label>Date of Birth:</label>
+									<span id="dob">-</span>
+								</div>
+								<div class="info-item">
+									<label>Address:</label>
+									<span id="address-display">-</span>
+								</div>
+								<div class="info-item">
+									<label>User ID:</label>
+									<span id="user-id" style="font-size:1.1rem; font-family:monospace;">-</span>
+								</div>
+							</div>
+						</div>
+
+						<!-- Edit Mode -->
+						<div id="edit-mode" style="display:none;">
+							<form id="edit-profile-form">
+								<div class="edit-grid">
+									<div class="edit-field">
+										<label class="edit-label">First Name</label>
+										<input type="text" class="edit-input" id="edit-firstName" placeholder="First name" />
+									</div>
+									<div class="edit-field">
+										<label class="edit-label">Last Name</label>
+										<input type="text" class="edit-input" id="edit-lastName" placeholder="Last name" />
+									</div>
+									<div class="edit-field">
+										<label class="edit-label">Phone Number</label>
+										<input type="tel" class="edit-input" id="edit-phone" placeholder="+20 1XX XXX XXXX" />
+									</div>
+									<div class="edit-field">
+										<label class="edit-label">Date of Birth</label>
+										<input type="date" class="edit-input" id="edit-dob" />
+									</div>
+									<div class="edit-field" style="grid-column: 1 / -1;">
+										<label class="edit-label">Address</label>
+										<input type="text" class="edit-input" id="edit-address" placeholder="Street, City" />
+									</div>
+								</div>
+								<div class="edit-actions">
+									<button type="button" class="cancel-edit-btn" id="cancel-edit-btn">
+										<i class="fas fa-times"></i> Cancel
+									</button>
+									<button type="submit" class="save-edit-btn" id="save-profile-btn">
+										<i class="fas fa-save"></i> Save Changes
+									</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+
+				<!-- Tab Content: Orders -->
+				<div class="tab-content" id="orders-tab">
+					<div class="orders-container">
+						<div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:2rem;">
+							<h3><i class="fas fa-shopping-bag"></i> Order History</h3>
+							<span id="orders-count" style="color:var(--text-gray); font-size:1.4rem;"></span>
+						</div>
+						<div id="orders-list">
+							<p class="loading">Loading orders...</p>
+						</div>
+					</div>
+				</div>
+
+				<!-- Tab Content: Settings -->
+				<div class="tab-content" id="settings-tab">
+					<div class="settings-card">
+						<h3><i class="fas fa-cog"></i> Account Settings</h3>
+
+						<div class="setting-item">
+							<div class="setting-info">
+								<h4><i class="fas fa-bell"></i> Email Notifications</h4>
+								<p>Receive updates about your orders</p>
+							</div>
+							<label class="switch">
+								<input type="checkbox" checked id="setting-email-notif">
+								<span class="slider"></span>
+							</label>
+						</div>
+
+						<div class="setting-item">
+							<div class="setting-info">
+								<h4><i class="fas fa-envelope"></i> Marketing Emails</h4>
+								<p>Get special offers and promotions</p>
+							</div>
+							<label class="switch">
+								<input type="checkbox" id="setting-marketing">
+								<span class="slider"></span>
+							</label>
+						</div>
+
+						<div class="setting-item">
+							<div class="setting-info">
+								<h4><i class="fas fa-shield-halved"></i> Account Security</h4>
+								<p>Last login: <span id="last-login">N/A</span></p>
+							</div>
+							<span class="status-ok"><i class="fas fa-check-circle"></i> Secured</span>
+						</div>
+
+						<div class="danger-zone">
+							<h3><i class="fas fa-exclamation-triangle"></i> Danger Zone</h3>
+							<button class="danger-btn" id="delete-account-btn">
+								<i class="fas fa-trash"></i> Delete Account
+							</button>
+							<p>Once you delete your account, there is no going back. Please be certain.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!--end section profile-->
+
+		<!--start section footer-->
+		<section class="footer" id="contact">
+			<div class="box-container">
+				<div class="box">
+					<h3>Quick Links</h3>
+					<a href="/index.html#home" title="home">Home</a>
+					<a href="/index.html#about" title="about">About</a>
+					<a href="/index.html#products" title="products">Products</a>
+				</div>
+				<div class="box">
+					<h3>Location</h3>
+					<p>Cairo</p>
+					<p>Qalyubia</p>
+					<p>Alexandria</p>
+				</div>
+				<div class="box">
+					<h3>Extra Links</h3>
+					<a href="/src/pages/user.html" title="My account">My Account</a>
+					<a href="/src/pages/cart.html" title="My Order">My Order</a>
+					<a href="/src/pages/favorites.html" title="Wishlist">My Wishlist</a>
+				</div>
+				<div class="box">
+					<h3>Contact Info</h3>
+					<a href="https://www.instagram.com/bloom_blossom222" target="_blank" title="instagram">
+						<img src="/image/footer-contact-info-instagram.png" alt="Insta" />
+						Instagram
+					</a>
+					<a href="https://www.facebook.com/Ammar.92006" target="_blank" title="Facebook">
+						<img src="/image/footer-contact-info-facebook.png" alt="FB" />
+						Facebook
+					</a>
+					<a href="#" target="_blank" title="snapchat">
+						<img src="/image/footer-contact-info-snapchat.png" alt="Snap" />
+						Snapchat
+					</a>
+					<a href="#" target="_blank" title="twitter">
+						<img src="/image/footer-contact-info-twitter.png" alt="X" />
+						Twitter
+					</a>
+					<div style="margin-top: 1rem;">
+						<img src="/image/footer-contact-info-card1.svg" alt="Card" />
+						<img src="/image/footer-contact-info-card2.svg" alt="Card" />
+						<img src="/image/footer-contact-info-card3.svg" alt="Card" />
+					</div>
+				</div>
+			</div>
+			<div class="credit">
+				© Developed by <span>Ammar Ahmed</span> | All rights reserved
+			</div>
+			<div class="privacy">
+				<a href="/src/pages/privacypolicy.html">Privacy Policy</a>
+				<a href="/src/pages/Terms.html">Terms and Conditions</a>
+			</div>
+		</section>
+		<!--end section footer-->
+
+		<!-- SCRIPTS -->
+		<script src="/src/pages/profile.js" type="module"></script>
+		<script src="/src/utils/theme.js"></script>
+		<!-- END OF SCRIPTS -->
+	</body>
+</html>

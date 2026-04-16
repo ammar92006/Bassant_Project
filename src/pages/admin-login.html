@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bloomy | Admin Login</title>
+    <meta name="description" content="Bloomy Admin Portal - Secure access for administrators" />
+    <link rel="stylesheet" href="/src/styles/design-system.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #111;
+            position: relative;
+            overflow: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: 
+                radial-gradient(ellipse at 20% 50%, rgba(232,67,147,0.15) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 20%, rgba(232,67,147,0.08) 0%, transparent 50%),
+                linear-gradient(rgba(17,17,17,0.85), rgba(17,17,17,0.92)),
+                url('/image/backgound-home-login-create acc.jfif') center/cover no-repeat;
+            z-index: 0;
+        }
+
+        /* Animated particles */
+        body::after {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(232,67,147,0.06) 0%, transparent 70%);
+            border-radius: 50%;
+            top: -100px;
+            right: -100px;
+            animation: float 8s ease-in-out infinite;
+            z-index: 0;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(30px) scale(1.05); }
+        }
+
+        .login-wrapper {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 460px;
+            padding: 2rem;
+            animation: fadeInUp 0.6s ease;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .login-card {
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 2rem;
+            padding: 4rem 3.5rem;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(232,67,147,0.05);
+        }
+
+        .login-logo {
+            text-align: center;
+            margin-bottom: 0.8rem;
+        }
+
+        .logo-text {
+            font-size: 3.8rem;
+            font-weight: 700;
+            color: #fff;
+            text-decoration: none;
+            letter-spacing: -1px;
+            display: inline-block;
+        }
+
+        .logo-text span { color: #e84393; }
+
+        .admin-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(232,67,147,0.12);
+            border: 1px solid rgba(232,67,147,0.25);
+            color: #e84393;
+            font-size: 1.1rem;
+            font-weight: 500;
+            padding: 0.4rem 1.2rem;
+            border-radius: 10rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .login-title {
+            color: #fff;
+            font-size: 2.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+
+        .login-subtitle {
+            color: rgba(255,255,255,0.45);
+            font-size: 1.3rem;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-label {
+            display: block;
+            color: rgba(255,255,255,0.7);
+            font-size: 1.25rem;
+            font-weight: 500;
+            margin-bottom: 0.7rem;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .input-icon {
+            position: absolute;
+            left: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgba(255,255,255,0.3);
+            font-size: 1.4rem;
+            transition: color 0.3s;
+            pointer-events: none;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 1.3rem 1.5rem 1.3rem 4.5rem;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 1rem;
+            color: #fff;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.4rem;
+            transition: all 0.3s;
+            outline: none;
+        }
+
+        .form-input::placeholder { color: rgba(255,255,255,0.25); }
+
+        .form-input:focus {
+            border-color: rgba(232,67,147,0.5);
+            background: rgba(232,67,147,0.05);
+            box-shadow: 0 0 0 3px rgba(232,67,147,0.08);
+        }
+
+        .form-input:focus + .input-icon,
+        .input-wrapper:focus-within .input-icon {
+            color: #e84393;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgba(255,255,255,0.3);
+            font-size: 1.4rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0;
+            transition: color 0.3s;
+        }
+
+        .toggle-password:hover { color: rgba(255,255,255,0.7); }
+
+        .btn-login {
+            width: 100%;
+            padding: 1.4rem;
+            background: linear-gradient(135deg, #e84393, #c0337a);
+            color: #fff;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+            margin-top: 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-login::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.1), transparent);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .btn-login:hover::before { opacity: 1; }
+        .btn-login:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(232,67,147,0.4); }
+        .btn-login:active { transform: translateY(0); }
+        .btn-login:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+        .spinner {
+            display: none;
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-top-color: #fff;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin: 2.5rem 0;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: rgba(255,255,255,0.08);
+        }
+
+        .divider span {
+            color: rgba(255,255,255,0.3);
+            font-size: 1.2rem;
+        }
+
+        .return-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            color: rgba(255,255,255,0.45);
+            font-size: 1.3rem;
+            text-decoration: none;
+            transition: color 0.3s;
+            margin-top: 0.5rem;
+        }
+
+        .return-link:hover { color: #e84393; }
+
+        /* Toast */
+        .toast-container {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .toast {
+            padding: 1.2rem 2rem;
+            border-radius: 0.8rem;
+            font-size: 1.35rem;
+            font-family: 'Poppins', sans-serif;
+            color: #fff;
+            animation: slideInRight 0.3s ease;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            min-width: 280px;
+        }
+
+        .toast.success { background: rgba(76,175,80,0.95); border-left: 4px solid #4caf50; }
+        .toast.error { background: rgba(244,67,54,0.95); border-left: 4px solid #f44336; }
+        .toast.info { background: rgba(33,150,243,0.95); border-left: 4px solid #2196f3; }
+
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(100px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Security note */
+        .security-note {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            color: rgba(255,255,255,0.3);
+            font-size: 1.1rem;
+            margin-top: 2rem;
+            justify-content: center;
+        }
+
+        .security-note i { color: #4caf50; font-size: 1.2rem; }
+    </style>
+</head>
+<body>
+
+    <div class="toast-container" id="toastContainer"></div>
+
+    <div class="login-wrapper">
+        <div class="login-card">
+            <!-- Logo -->
+            <div class="login-logo">
+                <a href="home.html" class="logo-text">Bloomy<span>.</span></a>
+            </div>
+            <div style="text-align:center; margin-bottom: 2.5rem;">
+                <div class="admin-badge">
+                    <i class="fas fa-shield-halved"></i>
+                    Admin Portal
+                </div>
+            </div>
+
+            <h1 class="login-title">Welcome Back</h1>
+            <p class="login-subtitle">Sign in to access the admin dashboard</p>
+
+            <form id="adminLoginForm" autocomplete="off">
+                <div class="form-group">
+                    <label class="form-label" for="email">Email Address</label>
+                    <div class="input-wrapper">
+                        <input 
+                            type="email" 
+                            class="form-input" 
+                            id="email" 
+                            placeholder="admin@bloomy.com" 
+                            required 
+                            autocomplete="email"
+                        >
+                        <i class="fas fa-envelope input-icon"></i>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="password">Password</label>
+                    <div class="input-wrapper">
+                        <input 
+                            type="password" 
+                            class="form-input" 
+                            id="password" 
+                            placeholder="Enter your password" 
+                            required 
+                            autocomplete="current-password"
+                        >
+                        <i class="fas fa-lock input-icon"></i>
+                        <button type="button" class="toggle-password" id="togglePass" title="Show/Hide password">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-login" id="loginBtn">
+                    <span id="btnText"><i class="fas fa-sign-in-alt"></i> Sign In to Dashboard</span>
+                    <span class="spinner" id="btnLoader"></span>
+                </button>
+            </form>
+
+            <div class="security-note">
+                <i class="fas fa-lock"></i>
+                Secured with Firebase Authentication
+            </div>
+
+            <div class="divider"><span>or</span></div>
+
+            <a href="home.html" class="return-link">
+                <i class="fas fa-arrow-left"></i> Return to Store
+            </a>
+        </div>
+    </div>
+
+    <script type="module" src="/src/auth/admin-login.js"></script>
+</body>
+</html>
