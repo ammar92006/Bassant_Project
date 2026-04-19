@@ -1,7 +1,11 @@
-/* ============================================ */
-/*  WISHLIST / FAVORITES PAGE                   */
-/* ============================================ */
+/* ==========================================================================
+   BLOOMY — FAVORITES/WISHLIST PAGE STYLES
+   Page-specific styles only. Global styles are in global.css.
+   ========================================================================== */
 
+/* ============================================ */
+/*  WISHLIST SECTION                            */
+/* ============================================ */
 .wishlist-section {
     padding-top: 12rem;
     min-height: 80vh;
@@ -23,15 +27,23 @@
     margin-bottom: 5rem;
 }
 
-/* Wishlist Card */
+/* ============================================ */
+/*  WISHLIST CARD                               */
+/* ============================================ */
 .wishlist-card {
     background: var(--card-bg);
-    border-radius: 1.5rem;
+    border-radius: var(--radius-md);
     border: 1px solid var(--border-color);
     overflow: hidden;
     position: relative;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    box-shadow: var(--shadow-sm);
     animation: fadeInCard 0.4s ease;
+    transition: all 0.4s ease;
+}
+
+.wishlist-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
 }
 
 @keyframes fadeInCard {
@@ -49,11 +61,11 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.4s ease;
+    transition: transform 0.5s ease;
 }
 
 .wishlist-card:hover .card-image img {
-    transform: scale(1.05);
+    transform: scale(1.08);
 }
 
 .wishlist-card .card-image .remove-fav {
@@ -65,14 +77,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(255,51,102,0.9);
+    background: rgba(255, 51, 102, 0.9);
     color: #fff;
     border-radius: 50%;
     cursor: pointer;
     font-size: 1.6rem;
     transition: all 0.3s ease;
     border: none;
-    box-shadow: 0 4px 15px rgba(255,51,102,0.4);
+    box-shadow: 0 4px 15px rgba(255, 51, 102, 0.4);
 }
 
 .wishlist-card .card-image .remove-fav:hover {
@@ -126,10 +138,10 @@
 .wishlist-card .card-actions .add-cart-btn {
     flex: 1;
     padding: 1.2rem;
-    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    background: var(--accent-gradient);
     color: #fff;
     border: none;
-    border-radius: 0.8rem;
+    border-radius: var(--radius-sm);
     cursor: pointer;
     font-size: 1.4rem;
     font-weight: 600;
@@ -142,7 +154,7 @@
 
 .wishlist-card .card-actions .add-cart-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(232, 67, 147, 0.4);
+    box-shadow: 0 6px 20px rgba(30, 90, 165, 0.4);
 }
 
 .wishlist-card .card-actions .share-btn {
@@ -151,9 +163,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(255,255,255,0.06);
+    background: rgba(255, 255, 255, 0.06);
     border: 1px solid var(--border-color);
-    border-radius: 0.8rem;
+    border-radius: var(--radius-sm);
     color: var(--text-gray);
     cursor: pointer;
     font-size: 1.5rem;
@@ -161,12 +173,14 @@
 }
 
 .wishlist-card .card-actions .share-btn:hover {
-    background: rgba(232, 67, 147, 0.1);
+    background: rgba(30, 90, 165, 0.1);
     color: var(--primary-color);
-    border-color: rgba(232, 67, 147, 0.3);
+    border-color: rgba(30, 90, 165, 0.3);
 }
 
-/* Empty State */
+/* ============================================ */
+/*  EMPTY STATE                                 */
+/* ============================================ */
 .wishlist-empty {
     grid-column: 1 / -1;
     text-align: center;
@@ -192,7 +206,9 @@
     margin-bottom: 3rem;
 }
 
-/* Responsive */
+/* ============================================ */
+/*  RESPONSIVE                                  */
+/* ============================================ */
 @media (max-width: 768px) {
     .wishlist-container {
         grid-template-columns: repeat(auto-fill, minmax(25rem, 1fr));

@@ -82,9 +82,9 @@ document.addEventListener('DOMContentLoaded', async () => {
                     <p style="color:#999; font-size:1.2rem; margin-bottom:2rem; max-width:400px; line-height:1.6;">
                         ${error.message || error || 'Unable to verify administrative access. Please check your connection.'}
                     </p>
-                    <button onclick="window.location.reload()" style="background:#e84393; color:white; padding: 1rem 2.5rem; border:none; border-radius:0.5rem; font-size:1.2rem; cursor:pointer; font-weight:600; margin-bottom:1rem;">Try Again</button>
+                    <button onclick="window.location.reload()" style="background:#1e5aa5; color:white; padding: 1rem 2.5rem; border:none; border-radius:0.5rem; font-size:1.2rem; cursor:pointer; font-weight:600; margin-bottom:1rem;">Try Again</button>
                     <br>
-                    <a href="admin-login.html" style="color:#e84393; text-decoration:underline; font-size:1.1rem;">Go to Login</a>
+                    <a href="admin-login.html" style="color:#1e5aa5; text-decoration:underline; font-size:1.1rem;">Go to Login</a>
                 </div>
             `;
         }
@@ -536,12 +536,12 @@ function updateSalesChart() {
             datasets: [{
                 label: 'Revenue (EGP)',
                 data: salesData,
-                borderColor: '#e84393',
-                backgroundColor: 'rgba(232, 67, 147, 0.1)',
+                borderColor: '#1e5aa5',
+                backgroundColor: 'rgba(30, 90, 165, 0.1)',
                 fill: true,
                 tension: 0.4,
                 borderWidth: 2,
-                pointBackgroundColor: '#e84393',
+                pointBackgroundColor: '#1e5aa5',
                 pointBorderColor: '#fff',
                 pointBorderWidth: 2,
                 pointRadius: 5,
@@ -570,8 +570,8 @@ function updateOrdersChart() {
             datasets: [{
                 label: 'Orders',
                 data: ordersData,
-                backgroundColor: 'rgba(232, 67, 147, 0.6)',
-                borderColor: '#e84393',
+                backgroundColor: 'rgba(30, 90, 165, 0.6)',
+                borderColor: '#1e5aa5',
                 borderWidth: 1,
                 borderRadius: 8,
                 borderSkipped: false
@@ -1623,7 +1623,7 @@ function renderCustomersTable() {
                 <tr>
                     <td style="cursor:pointer;" onclick="window.showUserDetail('${cust.uid}')">
                         <div class="table-user">
-                            <div class="table-user-avatar" style="background:linear-gradient(135deg,#e84393,#c0337a);">${initial}</div>
+                            <div class="table-user-avatar" style="background:linear-gradient(135deg,#1e5aa5,#c0337a);">${initial}</div>
                             <div class="table-user-info">
                                 <h4>${escapeHTML(name)}</h4>
                             </div>
@@ -1632,7 +1632,7 @@ function renderCustomersTable() {
                     <td>${escapeHTML(cust.email || 'N/A')}</td>
                     <td>${escapeHTML(cust.phone || '—')}</td>
                     <td>
-                        <span style="background:rgba(232,67,147,0.1);color:#e84393;padding:0.3rem 0.8rem;border-radius:0.5rem;font-size:1.2rem;font-weight:600;">
+                        <span style="background:rgba(30, 90, 165,0.1);color:#1e5aa5;padding:0.3rem 0.8rem;border-radius:0.5rem;font-size:1.2rem;font-weight:600;">
                             ${orderCount} order${orderCount !== 1 ? 's' : ''}
                         </span>
                     </td>

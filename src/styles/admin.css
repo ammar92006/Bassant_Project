@@ -5,8 +5,8 @@
 
 /* === CSS Variables (inherited from project) === */
 :root {
-    --primary-color: #e84393;
-    --secondary-color: #d63384;
+    --primary-color: #1e5aa5;
+    --secondary-color: #15447e;
     --dark-bg: #1a1a1a;
     --card-bg: #2c2c2c;
     --text-light: #ffffff;
@@ -22,8 +22,8 @@
 }
 
 .light-mode {
-    --primary-color: #e84393;
-    --secondary-color: #d63384;
+    --primary-color: #1e5aa5;
+    --secondary-color: #15447e;
     --dark-bg: #f5f5f5;
     --card-bg: #ffffff;
     --text-light: #222222;
@@ -142,7 +142,7 @@ body {
 
 .sidebar-toggle:hover {
     color: var(--primary-color);
-    background: rgba(232, 67, 147, 0.1);
+    background: rgba(30, 90, 165, 0.1);
 }
 
 .admin-layout.sidebar-collapsed .sidebar-logo .logo-text {
@@ -191,7 +191,7 @@ body {
 
 .nav-item.active {
     color: var(--text-light);
-    background: linear-gradient(90deg, rgba(232, 67, 147, 0.2), transparent);
+    background: linear-gradient(90deg, rgba(30, 90, 165, 0.2), transparent);
     border-left: 3px solid var(--primary-color);
 }
 
@@ -310,7 +310,7 @@ body {
 .topbar-search input:focus {
     border-color: var(--primary-color);
     background: rgba(255, 255, 255, 0.08);
-    box-shadow: 0 0 0 3px rgba(232, 67, 147, 0.1);
+    box-shadow: 0 0 0 3px rgba(30, 90, 165, 0.1);
 }
 
 .topbar-search i {
@@ -505,7 +505,7 @@ body {
 }
 
 .notification-item.unread {
-    background: rgba(232, 67, 147, 0.05);
+    background: rgba(30, 90, 165, 0.05);
     border-left: 3px solid var(--primary-color);
 }
 
@@ -593,7 +593,7 @@ body {
     right: 0;
     width: 8rem;
     height: 100%;
-    background: linear-gradient(135deg, transparent, rgba(232, 67, 147, 0.03));
+    background: linear-gradient(135deg, transparent, rgba(30, 90, 165, 0.03));
     border-radius: 0 1rem 1rem 0;
 }
 
@@ -619,7 +619,7 @@ body {
 }
 
 .overview-card.users .card-icon { background: rgba(33, 150, 243, 0.15); color: var(--info-color); }
-.overview-card.orders .card-icon { background: rgba(232, 67, 147, 0.15); color: var(--primary-color); }
+.overview-card.orders .card-icon { background: rgba(30, 90, 165, 0.15); color: var(--primary-color); }
 .overview-card.revenue .card-icon { background: rgba(76, 175, 80, 0.15); color: var(--success-color); }
 .overview-card.sessions .card-icon { background: rgba(255, 193, 7, 0.15); color: var(--warning-color); }
 
@@ -742,7 +742,7 @@ body {
 
 .table-search input:focus {
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(232, 67, 147, 0.1);
+    box-shadow: 0 0 0 3px rgba(30, 90, 165, 0.1);
 }
 
 .table-search i {
@@ -871,7 +871,7 @@ body {
 }
 
 .status-badge.admin {
-    background: rgba(232, 67, 147, 0.15);
+    background: rgba(30, 90, 165, 0.15);
     color: var(--primary-color);
 }
 
@@ -894,7 +894,7 @@ body {
 
 .table-action-btn:hover {
     color: var(--primary-color);
-    background: rgba(232, 67, 147, 0.1);
+    background: rgba(30, 90, 165, 0.1);
 }
 
 .table-action-btn.danger:hover {
@@ -1132,7 +1132,7 @@ body {
 
 .btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 0.5rem 1.5rem rgba(232, 67, 147, 0.4);
+    box-shadow: 0 0.5rem 1.5rem rgba(30, 90, 165, 0.4);
 }
 
 .btn-secondary {

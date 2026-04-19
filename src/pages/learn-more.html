@@ -3,30 +3,43 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<meta
-			name="description"
-			content="Learn more about Bloomy, Egypt's number one online flower ordering service."
-		/>
-		<link rel="icon" type="image/png" href="/public/favicon.png">`n		<title>Bloomy | Learn More</title>
+		<link rel="icon" type="image/png" href="/public/favicon.png">
+		<title>Bloomy | Learn More</title>
+		<meta name="description" content="Learn more about Bloomy, Egypt's number one online flower ordering service." />
+		<link rel="stylesheet" href="/src/styles/global.css" />
 		<link rel="stylesheet" href="/src/styles/learn-more.css" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+		<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 	</head>
 	<body>
+		<!-- Mobile Nav Overlay -->
+		<div class="nav-overlay" id="nav-overlay"></div>
+
 		<!--start section header-->
-		<header>
+		<header id="main-header">
 			<a href="/index.html" class="logo"><img src="/public/favicon.png" alt="Icon" style="height: 24px; vertical-align: middle; margin-right: 8px; margin-top: -4px;">Bloomy<span>.</span></a>
-			<nav class="navbar">
-				<a href="/index.html#home">Home</a>
+			<nav class="navbar" id="navbar">
+				<a href="/index.html">Home</a>
 				<a href="/index.html#about">About</a>
 				<a href="/index.html#products">Products</a>
 				<a href="#contact">Contact</a>
 			</nav>
 			<div class="icons">
-				<a href="/src/pages/user.html" aria-label="User account">
-					<img src="/image/header-icons-user.png" alt="User account" />
+				<a href="/src/pages/favorites.html" class="header-icon-btn" title="Favorites">
+					<i class="fas fa-heart"></i>
 				</a>
-				<a href="/src/pages/cart.html" aria-label="Shopping cart">
-					<img src="/image/header-icons-cart.png" alt="Shopping cart" />
+				<a href="/src/pages/cart.html" class="header-icon-btn" title="Shopping Cart">
+					<i class="fas fa-shopping-bag"></i>
 				</a>
+				<a href="/src/pages/user.html" class="header-icon-btn" title="My Account">
+					<i class="fas fa-user"></i>
+				</a>
+				<a href="#" id="theme-toggle" class="header-icon-btn theme-toggle" title="Toggle Theme">
+					<span>🌙</span>
+				</a>
+				<div class="menu-btn" id="menu-btn">
+					<i class="fas fa-bars"></i>
+				</div>
 			</div>
 		</header>
 		<!--end section header-->
@@ -111,18 +124,15 @@
 					<h3>Extra Links</h3>
 					<a href="/src/pages/user.html" title="My account">My Account</a>
 					<a href="/src/pages/cart.html" title="My Order">My Order</a>
+					<a href="/src/pages/favorites.html" title="Wishlist">My Wishlist</a>
 				</div>
 				<div class="box">
 					<h3>Contact Info</h3>
-					<a
-						href="https://www.instagram.com/bloom_blossom222"
-						target="_blank"
-						title="instagram"
-					>
+					<a href="https://www.instagram.com/bloom_blossom222" target="_blank" title="instagram">
 						<img src="/image/footer-contact-info-instagram.png" alt="Insta" />
 						Instagram
 					</a>
-					<a href="#" target="_blank" title="Facebook">
+					<a href="https://www.facebook.com/Ammar.92006" target="_blank" title="Facebook">
 						<img src="/image/footer-contact-info-facebook.png" alt="FB" />
 						Facebook
 					</a>
@@ -150,5 +160,7 @@
 			</div>
 		</section>
 		<!--end section footer-->
+
+		<script src="/src/utils/theme.js"></script>
 	</body>
 </html>

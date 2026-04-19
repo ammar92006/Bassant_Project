@@ -327,8 +327,8 @@ style.textContent = `
     }
 
     .qty-btn:hover {
-        background: #e84393;
-        border-color: #e84393;
+        background: #1e5aa5;
+        border-color: #1e5aa5;
     }
 
     .qty-btn:active {
@@ -340,7 +340,7 @@ style.textContent = `
     }
 
     .btn {
-        background: linear-gradient(90deg, #e84393, #d63384);
+        background: linear-gradient(90deg, #1e5aa5, #15447e);
         color: white;
         padding: 1rem 3rem;
         border: none;
@@ -354,7 +354,7 @@ style.textContent = `
 
     .btn:hover {
         transform: translateY(-3px);
-        box-shadow: 0 5px 15px rgba(232, 67, 147, 0.4);
+        box-shadow: 0 5px 15px rgba(30, 90, 165, 0.4);
     }
 `;
 document.head.appendChild(style);
