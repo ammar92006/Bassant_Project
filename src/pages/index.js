@@ -374,7 +374,7 @@ function setupSearch() {
     });
 }
 
-// ===== SMOOTH SCROLL =====
+// ===== SMOOTH SCROLL & SCROLL SPY =====
 function setupSmoothScroll() {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
@@ -384,7 +384,16 @@ function setupSmoothScroll() {
             const target = document.querySelector(href);
             if (target) {
                 e.preventDefault();
-                target.scrollIntoView({ behavior: 'smooth' });
+                
+                // Add offset for the fixed header
+                const headerOffset = document.getElementById('main-header')?.offsetHeight || 70;
+                const elementPosition = target.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.scrollY - headerOffset;
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
                 
                 // Close mobile menu if open
                 const navbar = document.getElementById('navbar');
@@ -398,6 +407,58 @@ function setupSmoothScroll() {
                 }
             }
         });
+    });
+}
+
+function setupScrollSpy() {
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.navbar a[href^="#"]');
+
+    if (sections.length === 0 || navLinks.length === 0) return;
+
+    // Configuration for the Intersection Observer
+    const observerOptions = {
+        root: null,
+        // Adjust the margins to determine when the "active" state switches
+        // Negative top margin means the section needs to scroll past the top
+        rootMargin: '-20% 0px -70% 0px',
+        threshold: 0
+    };
+
+    const observerCallback = (entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const currentId = entry.target.getAttribute('id');
+                
+                // Remove active class from all nav links
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    // Add active class to the currently visible section's link
+                    if (link.getAttribute('href') === `#${currentId}`) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+        });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+    // Observe each section
+    sections.forEach(section => {
+        observer.observe(section);
+    });
+
+    // Handle edge case: When scrolled to the very bottom, highlight the last link
+    window.addEventListener('scroll', () => {
+        // -10px buffer to account for rounding errors in scroll positioning
+        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 10) {
+            navLinks.forEach(link => link.classList.remove('active'));
+            const lastLink = navLinks[navLinks.length - 1];
+            if (lastLink) {
+                lastLink.classList.add('active');
+            }
+        }
     });
 }
 
@@ -555,6 +616,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Setup general UI functionality
     setupSearch();
     setupSmoothScroll();
+    setupScrollSpy();
     
     // Update badges
     updateCartBadge();
